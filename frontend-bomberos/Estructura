@@ -1,0 +1,12 @@
+tp_sistema_bomberos/
+│
+├── src/                  ← backend FastAPI
+│
+├── frontend-bomberos/    ← frontend JS
+│   ├── index.html
+│   ├── css/
+│   └── js/
+│
+├── requirements.txt
+├── .gitignore
+└── README.md

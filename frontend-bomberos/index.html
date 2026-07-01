@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Bomberos</title>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+
+  <h1> Sistema de Emergencias</h1>
+
+  <section class="formulario">
+    <h2>Nueva Emergencia</h2>
+
+    <input type="text" id="titulo" placeholder="Título">
+    <input type="text" id="ubicacion" placeholder="Ubicación">
+    <input type="text" id="estado" placeholder="Estado">
+
+    <button id="btnAgregar">Agregar Emergencia</button>
+  </section>
+
+  <section>
+    <h2> Emergencias</h2>
+    <div id="contenedorEmergencias"></div>
+  </section>
+
+  <section>
+    <h2> Favoritos</h2>
+    <div id="contenedorFavoritos"></div>
+  </section>
+
+  <script type="module" src="./js/main.js"></script>
+
+</body>
+</html>
+
