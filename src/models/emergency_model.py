@@ -61,3 +61,11 @@ class EmergencyUpdate(BaseModel):
         str,
         Field(min_length=2, max_length=30)
     ]
+
+class EmergencyCreate(BaseModel):
+    caller_name:Annotated[str,Field(min_lenght=3,max_lenght=50)]
+    location:Annotated[str,Field(min_lenght=5, max_lenght=100)]
+    emergency_type:Annotated[str,Field(min_lenght=3, max_lenght=30)]
+    status:Annotated[str,Field(description="Estado de la emergencia")]
+    unit:Annotated[str,Field(min_lenght=2, max_lenght=30)]
+

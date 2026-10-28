@@ -1,0 +1,13 @@
+#Entorno virtual
+.venv/
+
+#Archivos temporales de Python
+__pycache__/
+* .py[cod]
+
+#Base de datos local
+* .db
+src/emergencias.db
+
+#Variables de entorno
+.env
