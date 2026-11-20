@@ -1,71 +1,49 @@
-from pydantic import BaseModel, Field
-from typing import Annotated
+
+from typing import Optional
+from sqlmodel import SQLModel
 
 
-class Emergency(BaseModel):
-
-    id: Annotated[
-        int,
-        Field(gt=0, description="ID de la emergencia")
-    ]
-
-    caller_name: Annotated[
-        str,
-        Field(min_length=3, max_length=50)
-    ]
-
-    location: Annotated[
-        str,
-        Field(min_length=5, max_length=100)
-    ]
-
-    emergency_type: Annotated[
-        str,
-        Field(min_length=3, max_length=30)
-    ]
-
-    status: Annotated[
-        str,
-        Field(description="Estado de la emergencia")
-    ]
-
-    unit: Annotated[
-        str,
-        Field(min_length=2, max_length=30)
-    ]
+# Schema para crear un bombero
+class BomberoCreate(SQLModel):
+    nombre: str
+    apellido: str
+    rango: str
 
 
-class EmergencyUpdate(BaseModel):
+# Schema para mostrar un bombero
+class BomberoRead(SQLModel):
+    id: int
+    nombre: str
+    apellido: str
+    rango: str
 
-    caller_name: Annotated[
-        str,
-        Field(min_length=3, max_length=50)
-    ]
 
-    location: Annotated[
-        str,
-        Field(min_length=5, max_length=100)
-    ]
+# Datos básicos de una emergencia
+class EmergencyBase(SQLModel):
+    caller_name: str
+    location: str
+    emergency_type: str
+    status: str
+    unit: str
 
-    emergency_type: Annotated[
-        str,
-        Field(min_length=3, max_length=30)
-    ]
 
-    status: Annotated[
-        str,
-        Field(description="Estado de la emergencia")
-    ]
+# Schema para crear una emergencia
+class EmergencyCreate(EmergencyBase):
+    bombero_id: Optional[int] = None
 
-    unit: Annotated[
-        str,
-        Field(min_length=2, max_length=30)
-    ]
 
-class EmergencyCreate(BaseModel):
-    caller_name:Annotated[str,Field(min_lenght=3,max_lenght=50)]
-    location:Annotated[str,Field(min_lenght=5, max_lenght=100)]
-    emergency_type:Annotated[str,Field(min_lenght=3, max_lenght=30)]
-    status:Annotated[str,Field(description="Estado de la emergencia")]
-    unit:Annotated[str,Field(min_lenght=2, max_lenght=30)]
+# Schema para actualizar una emergencia
+class EmergencyUpdate(SQLModel):
+    caller_name: Optional[str] = None
+    location: Optional[str] = None
+    emergency_type: Optional[str] = None
+    status: Optional[str] = None
+    unit: Optional[str] = None
+    bombero_id: Optional[int] = None
 
+
+# Schema de respuesta con datos anidados
+class Emergency(EmergencyBase):
+    id: int
+    bombero_id: Optional[int] = None
+    bombero: Optional[BomberoRead] = None

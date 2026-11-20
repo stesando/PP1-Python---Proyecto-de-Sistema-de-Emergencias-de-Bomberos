@@ -2,27 +2,24 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from database import Base, engine
-from models import emergency_db
 from routers.emergencies_router import router as emergencies_router
 
-# Crear las tablas de la base de datos
-Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="Sistema de Gestión de Bomberos 🚒",
     description="""
-API para administrar emergencias de bomberos.
+    API para administrar emergencias de bomberos.
 
-Permite:
-- Registrar pedidos de auxilio
-- Consultar emergencias
-- Actualizar estados operativos
-- Eliminar registros
-- Gestionar unidades móviles
-""",
+    Permite:
+    - Registrar pedidos de auxilio
+    - Consultar emergencias
+    - Actualizar estados operativos
+    - Eliminar registros
+    - Gestionar unidades móviles
+    """,
     version="1.0",
 )
+
 
 # Configuración CORS
 app.add_middleware(
@@ -33,6 +30,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 # Registrar el router de emergencias
 app.include_router(emergencies_router)
 
@@ -40,4 +38,3 @@ app.include_router(emergencies_router)
 @app.get("/", tags=["Inicio"])
 def inicio():
     return {"mensaje": "Sistema de Bomberos funcionando 🚒"}
-
